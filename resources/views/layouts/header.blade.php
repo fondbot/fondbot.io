@@ -9,7 +9,7 @@
             <span></span>
             <span></span>
             <span></span>
-        </span>
+    </span>
 
     <div class="navbar-end">
         <a href="https://github.com/fondbot/fondbot" class="navbar-item" target="_blank">
