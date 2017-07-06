@@ -19,13 +19,20 @@ use Webuni\CommonMark\TableExtension\TableExtension;
 
 class Documentation
 {
+    /**
+     * DIRECTORY
+     */
     private const DIRECTORY = 'docs';
 
+    /**
+     * @var GitHubManager
+     */
     private $github;
 
     public function __construct(GitHubManager $github)
     {
         $this->github = $github;
+        $this->storage = Storage::disk('local');
     }
 
     /**
@@ -33,7 +40,7 @@ class Documentation
      */
     public function purge(): void
     {
-        Storage::deleteDirectory(self::DIRECTORY);
+        $this->storage->deleteDirectory(self::DIRECTORY);
     }
 
     /**
@@ -52,11 +59,11 @@ class Documentation
         collect($items)->each(function (array $item) use ($version, $path) {
             // We need to create directory and download its contents
             if ($item['type'] === 'dir') {
-                Storage::makeDirectory(self::DIRECTORY . '/' . $version . '/' . $item['name']);
+                $this->storage->makeDirectory(self::DIRECTORY . '/' . $version . '/' . $item['name']);
 
                 $this->download($version, $item['path']);
             } elseif ($item['type'] === 'file') {
-                Storage::put(
+                $this->storage->put(
                     self::DIRECTORY . '/' . $version . '/' . $path . '/' . $item['name'],
                     file_get_contents($item['download_url'])
                 );
@@ -71,7 +78,7 @@ class Documentation
      */
     public function compile(string $version): void
     {
-        $files = Storage::files('docs/' . $version, true);
+        $files = $this->storage->files('docs/' . $version, true);
 
         collect($files)->each(function ($file) use ($version) {
             // Get language of the file
@@ -88,7 +95,7 @@ class Documentation
             $htmlRenderer = new HtmlRenderer($environment);
 
             // Get file contents
-            $markdown = Storage::get($file);
+            $markdown = $this->storage->get($file);
 
             // Compile to html
             $document = $parser->parse($markdown);
@@ -98,7 +105,7 @@ class Documentation
             $file = str_replace('.md', '.html', $file);
 
             // Save result
-            Storage::put($file, $html);
+            $this->storage->put($file, $html);
         });
     }
 

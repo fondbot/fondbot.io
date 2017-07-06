@@ -1,12 +1,12 @@
 <?php
 
-Route::get('/', 'WelcomeController@show');
+$this->get('/', 'WelcomeController@index');
 
 // Documentation
-Route::group(['prefix' => 'docs'], function () {
+$this->group(['prefix' => 'docs'], function () {
 
-    Route::get('/', 'DocsController@index');
-    Route::get('/{language}/{version}/{page}', 'DocsController@show')
+    $this->get('/', 'DocsController@index');
+    $this->get('/{language}/{version}/{page}', 'DocsController@show')
         ->where('page', '.*')
         ->name('docs.show');
 

@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Http\ViewComposers\DocsShowComposer;
-use App\Http\ViewComposers\ProfileShowComposer;
 use Illuminate\Support\ServiceProvider;
-use View;
+use Illuminate\Support\Facades\View;
 
 class ViewServiceProvider extends ServiceProvider
 {
