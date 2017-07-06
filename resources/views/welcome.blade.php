@@ -14,15 +14,15 @@
                     </p>
 
                     <div class="container">
-                        <a class="button is-info is-large" href="/docs">
+                        <a class="button is-info is-medium" href="/docs">
                             <span class="icon"><i class="fa fa-book"></i></span>
                             <span>Get Started</span>
                         </a>
-                        <a class="button is-large" href="https://github.com/fondbot/fondbot">
+                        <a class="button is-medium" href="https://github.com/fondbot/fondbot">
                             <span class="icon"><i class="fa fa-github"></i></span>
                             <span>GitHub</span>
                         </a>
-                        <a class="button is-large" href="https://fondbot.signup.team">
+                        <a class="button is-medium" href="https://fondbot.signup.team">
                             <span class="icon"><i class="fa fa-slack"></i></span>
                             <span>Slack</span>
                         </a>
