@@ -1,0 +1,31 @@
+image: misterio92/ci-php-node:latest
+
+cache:
+  paths:
+  - node_modules/
+  - vendor/
+  - $HOME/.composer/cache
+
+stages:
+- testing
+- build
+
+phpunit:
+  stage: testing
+  script:
+  - composer install --prefer-source --no-interaction
+  - composer run post-root-package-install
+  - composer run post-create-project-cmd
+  - composer test
+
+build:
+  stage: build
+  script:
+  - yarn
+  - yarn run production
+  - composer install --no-dev --prefer-source --no-interaction
+  - rm -rf .git/ node_modules/
+  artifacts:
+    paths:
+    - "*"
+    expire_in: 3 days

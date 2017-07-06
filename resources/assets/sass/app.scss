@@ -1,0 +1,65 @@
+// Variables
+@import "variables";
+// Frameworks
+@import "~bulma";
+@import "~font-awesome/scss/font-awesome";
+@import "~prismjs/themes/prism.css";
+@import "~prismjs/themes/prism-okaidia.css";
+
+img.logo {
+  height: 45px;
+  max-height: none;
+}
+
+.navbar {
+  border-bottom: solid 2px #EFEFEF;
+  a.navbar-item:hover {
+    background: none;
+  }
+}
+
+.title {
+  color: $color-main;
+}
+
+.section h2:not(:first-child) {
+  margin-top: 1.1428em;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  padding: 3rem 1.5rem;
+  border-top: solid 2px #EFEFEF;
+  p {
+    margin-bottom: 10px;
+  }
+}
+
+.landing {
+
+  .head {
+    display: inline-block;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  pre {
+    background: none;
+    color: #ffffff;
+  }
+
+  code {
+    padding: 10px 15px;
+  }
+
+  .level {
+    padding-top: 40px;
+
+    .title {
+      padding-top: 10px;
+    }
+  }
+
+}
+
