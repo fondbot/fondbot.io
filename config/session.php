@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'cookie' => 'laravel_session',
+    'cookie' => str_slug(config_path('app.name')),
 
     /*
     |--------------------------------------------------------------------------
