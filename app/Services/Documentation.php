@@ -13,7 +13,7 @@ use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
 use League\CommonMark\HtmlRenderer;
 use League\CommonMark\Inline\Element\Link;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 use Webuni\CommonMark\TableExtension\Table;
 use Webuni\CommonMark\TableExtension\TableExtension;
 
