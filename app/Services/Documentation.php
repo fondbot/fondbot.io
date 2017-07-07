@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Services\Documentation\Markdown\HeadingRenderer;
-use App\Services\Documentation\Markdown\LinkRenderer;
-use App\Services\Documentation\Markdown\TableRenderer;
-use GrahamCampbell\GitHub\GitHubManager;
-use League\CommonMark\Block\Element\Heading;
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;
 use League\CommonMark\HtmlRenderer;
-use League\CommonMark\Inline\Element\Link;
 use Illuminate\Support\Facades\Storage;
+use GrahamCampbell\GitHub\GitHubManager;
+use League\CommonMark\Inline\Element\Link;
 use Webuni\CommonMark\TableExtension\Table;
+use League\CommonMark\Block\Element\Heading;
 use Webuni\CommonMark\TableExtension\TableExtension;
+use App\Services\Documentation\Markdown\LinkRenderer;
+use App\Services\Documentation\Markdown\TableRenderer;
+use App\Services\Documentation\Markdown\HeadingRenderer;
 
 class Documentation
 {
     /**
-     * DIRECTORY
+     * DIRECTORY.
      */
     private const DIRECTORY = 'docs';
 
@@ -59,12 +59,12 @@ class Documentation
         collect($items)->each(function (array $item) use ($version, $path) {
             // We need to create directory and download its contents
             if ($item['type'] === 'dir') {
-                $this->storage->makeDirectory(self::DIRECTORY . '/' . $version . '/' . $item['name']);
+                $this->storage->makeDirectory(self::DIRECTORY.'/'.$version.'/'.$item['name']);
 
                 $this->download($version, $item['path']);
             } elseif ($item['type'] === 'file') {
                 $this->storage->put(
-                    self::DIRECTORY . '/' . $version . '/' . $path . '/' . $item['name'],
+                    self::DIRECTORY.'/'.$version.'/'.$path.'/'.$item['name'],
                     file_get_contents($item['download_url'])
                 );
             }
@@ -78,7 +78,7 @@ class Documentation
      */
     public function compile(string $version): void
     {
-        $files = $this->storage->files('docs/' . $version, true);
+        $files = $this->storage->files('docs/'.$version, true);
 
         collect($files)->each(function ($file) use ($version) {
             // Get language of the file
@@ -122,6 +122,6 @@ class Documentation
      */
     public static function get(string $version, string $language, string $page): string
     {
-        return Storage::get(self::DIRECTORY . '/' . $version . '/' . $language . '/' . $page . '.html');
+        return Storage::get(self::DIRECTORY.'/'.$version.'/'.$language.'/'.$page.'.html');
     }
 }

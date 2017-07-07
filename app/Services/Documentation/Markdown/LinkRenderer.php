@@ -22,8 +22,7 @@ class LinkRenderer extends BaseLinkRenderer
     public function render(
         AbstractInline $inline,
         ElementRendererInterface $htmlRenderer
-    ): ?\League\CommonMark\HtmlElement
-    {
+    ): ?\League\CommonMark\HtmlElement {
         $element = parent::render($inline, $htmlRenderer);
 
         $href = $element->getAttribute('href');

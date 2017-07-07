@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Services\Version;
 use App\Entities\Language;
 use App\Services\Documentation;
-use App\Services\Version;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class DocsController extends Controller
 {

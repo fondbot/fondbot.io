@@ -49,7 +49,7 @@ return [
     'include_helpers' => false,
 
     'helper_files' => [
-        base_path() . '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
+        base_path().'/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
     ],
 
     /*
@@ -65,7 +65,6 @@ return [
     'model_locations' => [
         'app',
     ],
-
 
     /*
     |--------------------------------------------------------------------------
@@ -91,7 +90,7 @@ return [
             'critical' => 'Monolog\Logger::addCritical',
             'alert' => 'Monolog\Logger::addAlert',
             'emergency' => 'Monolog\Logger::addEmergency',
-        ]
+        ],
     ],
 
     /*

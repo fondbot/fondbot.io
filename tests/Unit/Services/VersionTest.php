@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Services;
 
-use App\Services\Version;
 use Tests\TestCase;
+use App\Services\Version;
 
 class VersionTest extends TestCase
 {

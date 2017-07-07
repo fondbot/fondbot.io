@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Documentation;
 use App\Services\Version;
+use App\Services\Documentation;
 use Illuminate\Console\Command;
 
 class DocumentationSync extends Command

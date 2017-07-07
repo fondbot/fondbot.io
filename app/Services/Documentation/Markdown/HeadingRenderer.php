@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Services\Documentation\Markdown;
 
+use League\CommonMark\HtmlElement;
+use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Renderer\HeadingRenderer as BaseHeadingRenderer;
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
 
 class HeadingRenderer extends BaseHeadingRenderer
 {

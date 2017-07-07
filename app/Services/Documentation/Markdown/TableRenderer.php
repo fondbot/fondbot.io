@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services\Documentation\Markdown;
 
-use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\ElementRendererInterface;
+use League\CommonMark\Block\Element\AbstractBlock;
 use Webuni\CommonMark\TableExtension\TableRenderer as BaseTableRenderer;
 
 class TableRenderer extends BaseTableRenderer

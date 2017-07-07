@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\ViewComposers;
 
+use Spatie\Menu\Link;
 use Illuminate\View\View;
 use Spatie\Menu\Laravel\Menu;
-use Spatie\Menu\Link;
 
 class DocsShowComposer
 {
@@ -38,10 +38,10 @@ class DocsShowComposer
         $version = $view->offsetGet('version');
 
         foreach ($this->items as $label => $links) {
-            $menu = (clone $base)->prepend('<p class="menu-label">' . $label . '</p>');
+            $menu = (clone $base)->prepend('<p class="menu-label">'.$label.'</p>');
 
             foreach ($links as $uri => $title) {
-                $menu->add(Link::to('/docs/' . $language . '/' . $version . $uri, $title));
+                $menu->add(Link::to('/docs/'.$language.'/'.$version.$uri, $title));
             }
 
             $menus[] = $menu;
