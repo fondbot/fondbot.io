@@ -1,13 +1,12 @@
 {
-  "name": "fondbot/store",
-  "license": "proprietary",
+  "name": "fondbot/fondbot.com",
+  "description": "FondBot Website.",
+  "license": "MIT",
   "type": "project",
   "require": {
     "php": "^7.1",
     "composer/semver": "^1.4",
-    "doctrine/dbal": "^2.5",
     "graham-campbell/github": "^5.1",
-    "laracasts/flash": "^3.0",
     "laravel/framework": "5.4.*",
     "laravel/tinker": "~1.0",
     "league/commonmark": "^0.15.4",
@@ -52,16 +51,7 @@
       "php artisan ide-helper:meta",
       "php artisan optimize"
     ],
-    "test": "vendor/bin/phpunit",
-    "build": [
-      "@php artisan down",
-      "yarn",
-      "yarn prod",
-      "@php artisan config:cache",
-      "@php artisan route:cache",
-      "chown -R www-data:www-data .",
-      "@php artisan up"
-    ]
+    "test": "vendor/bin/phpunit"
   },
   "config": {
     "preferred-install": "dist",

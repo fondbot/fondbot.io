@@ -1,5 +1,4 @@
 window._ = require('lodash');
-window.Prims = require('prismjs');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
