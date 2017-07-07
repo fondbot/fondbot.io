@@ -4,13 +4,27 @@
 @import "~bulma";
 @import "~font-awesome/scss/font-awesome";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 12.5rem;
+}
+
+.documentation{
+  padding: 6rem 3rem;
+}
+
 img.logo {
   height: 45px;
   max-height: none;
 }
 
 .navbar {
-  border-bottom: solid 2px #EFEFEF;
+  border-bottom: solid 1px #ced4da;
+  padding: 0 15px;
   a.navbar-item:hover {
     background: none;
   }
@@ -25,10 +39,12 @@ img.logo {
 }
 
 .footer {
-  position: relative;
+  position: absolute;
   bottom: 0;
+  width: 100%;
   padding: 3rem 1.5rem;
-  border-top: solid 2px #EFEFEF;
+  border-top: solid 1px #ced4da;
+  max-height: 12.5rem;
   p {
     margin-bottom: 10px;
   }
@@ -60,4 +76,5 @@ img.logo {
   }
 
 }
+
 

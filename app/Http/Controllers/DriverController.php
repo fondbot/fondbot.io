@@ -11,29 +11,29 @@ class DriverController extends Controller
 {
     private $official = [
         [
-            'name' => 'telegram',
-            'package' => 'fondbot/telegram',
+            'name'       => 'telegram',
+            'package'    => 'fondbot/telegram',
             'repository' => 'http://github.com/fondbot/drivers-telegram',
-            'official' => true,
-            'versions' => ['1.0'],
+            'official'   => true,
+            'versions'   => ['1.0'],
         ],
         [
-            'name' => 'facebook',
-            'package' => 'fondbot/facebook',
+            'name'       => 'facebook',
+            'package'    => 'fondbot/facebook',
             'repository' => 'http://github.com/fondbot/drivers-facebook',
-            'official' => true,
-            'versions' => ['1.0'],
+            'official'   => true,
+            'versions'   => ['1.0'],
         ],
         [
-            'name' => 'vk-communities',
-            'package' => 'fondbot/vk-communities',
+            'name'       => 'vk-communities',
+            'package'    => 'fondbot/vk-communities',
             'repository' => 'https://github.com/fondbot/drivers-vk-communities',
-            'official' => true,
-            'versions' => ['1.0'],
+            'official'   => true,
+            'versions'   => ['1.0'],
         ],
     ];
 
-    public function index(): array
+    public function index() : array
     {
         return $this->official;
     }

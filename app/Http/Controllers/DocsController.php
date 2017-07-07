@@ -12,11 +12,21 @@ use Illuminate\Http\RedirectResponse;
 
 class DocsController extends Controller
 {
-    public function index(): RedirectResponse
+    /**
+     * @return RedirectResponse
+     */
+    public function index() : RedirectResponse
     {
         return redirect()->route('docs.show', [Language::EN, Version::latest(), 'introduction']);
     }
 
+    /**
+     * @param string $language
+     * @param string $version
+     * @param string $page
+     *
+     * @return \Illuminate\Contracts\View\Factory|RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function show(string $language, string $version, string $page)
     {
         try {

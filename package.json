@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bulma": "^0.4.2",
+    "bulma": "^0.4.3",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "vue": "^2.3.4"
