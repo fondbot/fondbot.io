@@ -1,5 +1,6 @@
 module.exports = {
     dest: "public",
+    serviceWorker: true,
     locales: {
         '/': {
             lang: 'en-EN',
