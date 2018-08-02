@@ -1,4 +1,7 @@
 {
+  "dependencies": {
+    "vuepress": "^0.13.1"
+  },
   "scripts": {
     "dev": "vuepress dev",
     "build": "vuepress build"
