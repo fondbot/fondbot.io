@@ -2,6 +2,9 @@ module.exports = {
     dest: "public",
     serviceWorker: true,
     ga: 'UA-99756081-2',
+    head: [
+        ['link', { rel: 'icon', href: '/logo.svg' }]
+    ],
     locales: {
         '/': {
             lang: 'en-EN',
