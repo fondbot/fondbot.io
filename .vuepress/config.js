@@ -1,6 +1,7 @@
 module.exports = {
     dest: "public",
     serviceWorker: true,
+    ga: 'UA-99756081-2',
     locales: {
         '/': {
             lang: 'en-EN',
