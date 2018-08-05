@@ -16,8 +16,8 @@ module.exports = {
         repo: 'fondbot/fondbot.io',
         editLinks: true,
         lastUpdated: true,
-        displayAllHeaders: true,
-        sidebarDepth: 0,
+        displayAllHeaders: false,
+        sidebarDepth: 1,
         sidebar: [
             {
                 title: 'Getting Started',
@@ -43,6 +43,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     '/guide/drivers/telegram',
+                    '/guide/drivers/vk',
                 ],
             },
         ],

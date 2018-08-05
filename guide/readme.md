@@ -15,31 +15,4 @@ In this documentation we will not cover Laravel related topics, so if you need a
 * Intents
 * Built-in finite state machine (conversation system)
 * Asynchronous message sending
-* Drivers: Facebook, Telegram, VK Communities and more...
-
-## Release Management & Version Lifecycle
-
-FondBot strictly follows [semantic versioning](http://semver.org). 
-
-Branches are created using the following pattern: [MAJOR].[MINOR]
-
-Release tags are never deleted. 
-
-Each minor release makes the previous one unsupported.
-Unsupported releases do not receive bug & security fixes. 
-
-| Version | Receives fixes |
-|---------|----------------|
-| 1.0     | No             |
-| 1.1     | No             |
-| 1.2     | Yes            |
-| 2.0     | No             |
-| 2.1     | Yes            |
-
-Upcoming minor release branch is master.
-Upcoming major release branch is develop. 
-
-## Community
-
-Join our open Slack channel:
-[https://fondbot.signup.team](https://fondbot.signup.team)
+* Drivers: Facebook, Telegram, VK and more...

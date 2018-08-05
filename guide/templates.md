@@ -28,5 +28,3 @@ $this->sendMessage('Should I send you a weather forecast every day?', $keyboard)
 
 This code will create new keyboard instance and send it with `Should I send you a weather forecast every day?` message text.
 
-
-

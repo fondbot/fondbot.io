@@ -13,7 +13,9 @@ FondBot has a few requirements you should be aware of before installing:
 
 Use Composer `create-project` command to bootstrap chatbot project:
 
-    composer create-project --prefer-dist fondbot/fondbot bot
+```bash
+composer create-project --prefer-dist fondbot/fondbot bot
+```
 
 Congratulations, your new bot project has been just created. Now go through [configuration](/configuration) section in order to tune created application.
 

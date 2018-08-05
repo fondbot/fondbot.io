@@ -1,4 +1,7 @@
 # Sending Messages
+
+[[toc]]
+
 You are eligible for sending messages only from intents or interactions.
 
 ## Text With Template

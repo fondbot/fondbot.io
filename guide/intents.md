@@ -1,5 +1,7 @@
 # Intents
 
+[[toc]]
+
 ## Introduction
 Intent is a command which is been executed upon activation.
 Upon running you can send messages, attachments and templates.
@@ -7,9 +9,11 @@ Upon running you can send messages, attachments and templates.
 In order to create dialog and process user replies you need to use [interactions](/interactions).
 
 ## Creating Intents
-Create new intent by running toolbelt command:
+Create new intent by running artisan command:
 
-    php toolbelt make:intent WeatherIntent
+```bash
+php artisan fondbot:make:intent WeatherIntent
+```
 
 This command will create `app/Intents/WeatherIntent.php` file which will contain the following class:
 
@@ -18,9 +22,9 @@ This command will create `app/Intents/WeatherIntent.php` file which will contain
 
 declare(strict_types=1);
 
-namespace Bot\Intents;
+namespace App\Intents;
 
-use FondBot\Conversation\Activator;
+use FondBot\Conversation\Activators\Exact;
 use FondBot\Conversation\Intent;
 use FondBot\Events\MessageReceived;
 
@@ -34,7 +38,7 @@ class WeatherIntent extends Intent
     public function activators(): array
     {
         return [
-            'exact:/weather',
+            Exact::make('/weather'),
         ];
     }
 
@@ -52,10 +56,12 @@ Go to the [sending messages](/sending-messages) section to learn more about mess
 
 If you want to create dialog with user and process his reply you need to make a transition to an [interaction](/interactions) from your intent:
 
-    public function run(MessageReceived $message): void
-    {
-        Interactions\AskCityInteraction::jump();
-    }
+```php
+public function run(MessageReceived $message): void
+{
+    Interactions\AskCityInteraction::jump();
+}
+```
 
 ## Injecting Dependencies
 
@@ -75,26 +81,38 @@ class WeatherIntent extends Intent
 ## Activators
 From the above example, if user sends `/weather` then `WeatherIntent` will be activated. 
 
-### Available Activators
-
-#### exact:value
+### Exact
 
 Received message text must match the given value.
 
-#### contains:foo,bar,...
+```php
+use FondBot\Conversation\Activators\Exact;
 
-Received message text contains one or more values using [str_contains](https://laravel.com/docs/5.5/helpers#method-str-contains) helper.
+Exact::make('weather in New York');
+```
+
+### Contains
+
+Received message text contains one or more values using [str_contains](https://laravel.com/docs/helpers#method-str-contains) helper.
 Since this activator requires an array of values you may use `Activator` class in order to create activator instance.
 
 ```php
-Activator::contains(['weather in', 'is it raining in'])
+use FondBot\Conversation\Activators\Contains;
+
+Contains::make(['weather in', 'is it raining in'])
 ```
 
-#### regex:pattern
+### Regex
 
-Received message text is matched by a regular expression.
+Received message text is matched by a regular expression using [str_is](https://laravel.com/docs/helpers#method-str-is).
 
-#### in:foo,bar,...
+```php
+use FondBot\Conversation\Activators\Regex;
+
+Regex::make(['weather in', 'is it raining in'])
+```
+
+### In
 
 Received message text is one of given values using `in_array` function. 
 The In Array activator checks if message text matches one of the values from the array.
@@ -102,20 +120,31 @@ The In Array activator checks if message text matches one of the values from the
 Since this activator requires an array of values you may use `Activator` class in order to create activator instance.
 
 ```php
-Activator::in(['first', 'second'])
+use FondBot\Conversation\Activators\In;
+
+In::make(['first', 'second'])
 ```
 
-#### attachment
+### Attachment
 
-Received message must contain any attachment or attachment of given type.
+Received message contains attachment.
 
 ```php
-Activator::attachment() // any attachment
-Activator::attachment()->image() // only image attachment
+use FondBot\Conversation\Activators\Attachment;
+
+// any attachment
+Attachment::make();
+
+// only image attachment
+Attachment::make()->image();
 ```
 
-#### payload:value
+### Payload
 
 Received message payload data must match the given value.
 
+```php
+use FondBot\Conversation\Activators\Payload;
 
+Payload::make('foo');
+```

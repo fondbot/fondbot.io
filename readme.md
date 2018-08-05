@@ -19,14 +19,14 @@ class WeatherIntent extends Intent
     public function activators(): array
     {
         return [
-            $this->exact('/weather'),
-            $this->exact('Tell me the weather for today'),
+            Exact::make('/weather'),
+            Exact::make('Tell me the weather for today'),
         ];
     }
 
     public function run(ReceivedMessage $message): void
     {
-        $this->sendMessage('Weather is nice today.');
+        $this->reply('Weather is nice today.');
     }
 }
 ```

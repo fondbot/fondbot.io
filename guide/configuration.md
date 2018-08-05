@@ -15,7 +15,7 @@ Here is an example where we define channel called `telegram` which will use `tel
 
 declare(strict_types=1);
 
-namespace Bot\Providers;
+namespace App\Providers;
 
 use FondBot\Foundation\Providers\ChannelServiceProvider as ServiceProvider;
 
@@ -38,10 +38,10 @@ class ChannelServiceProvider extends ServiceProvider
 }
 ```
 
-To get a list of all register channels execute the `channel:list` toolbelt command:
+To get a list of all register channels execute the `channel:list` artisan command:
 
 ```bash
-php toolbelt channel:list
+php artisan fondbot:channel:list
 ```
 
 ### Protecting Channel Webhooks

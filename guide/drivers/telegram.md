@@ -1,5 +1,7 @@
 # Telegram
 
+[[toc]]
+
 In order to create Telegram channel you need to create bot and obtain access token.
 
 You can find all related information in the [official guide](https://core.telegram.org/bots#3-how-do-i-create-a-bot). 
@@ -8,7 +10,7 @@ You can find all related information in the [official guide](https://core.telegr
 
 In your project root run the following command:
 
-    php toolbelt driver:install telegram
+    php artisan fondbot:driver:install telegram
 
 ### Configuration    
 
