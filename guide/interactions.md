@@ -1,11 +1,18 @@
 # Interactions
 
-## Introduction
-Interaction is used when bot needs to process user reply aka dialog.
+[[toc]]
 
-Bot can jump to interaction from [intent](/intents) by calling `jump` method.
+## Introduction
+
+Interactions are used for situations when you need to ask user some questions and process replies.
+
+Within your [intent](/guide/intents.md), use `jump` method on interaction class to start dialog with user.
 
 ## Creating Interactions
+
+### Generating Interaction Classes
+
+All interactions are stored in `app/Interactions` directory. If `app/Interactions` directory does not exist, it will be created when your run `fondbot:make:interaction` command.
 
 Create new interaction by running artisan command:
 
@@ -13,69 +20,120 @@ Create new interaction by running artisan command:
 php artisan fondbot:make:interaction AskCity
 ```
 
-This command will generate `app/Interactions/AskCityInteraction.php` file which will contain the following class:
+### Class Structure
+
+Interactions consist of two methods by default: `run` and `process`.
+When you jump to an interaction from intent `run` method will be executed, where you may define what you expect from user. For example, you may ask pizza type which user wishes to order.
+
+After user replies, `process` method will be executed with `MessageReceived` object provided. Here you may request a third-party API, find a record in database and reply to user.
+
+
+If you don't jump to another interaction or restart current interaction, session will be closed and bot will wait for another intent. 
 
 ```php   
 <?php
 
 declare(strict_types=1);
 
-namespace Bot\Interactions;
+namespace App\Interactions;
 
 use FondBot\Conversation\Interaction;
-use FondBot\Drivers\ReceivedMessage;
-use GuzzleHttp\Client;
+use FondBot\Events\MessageReceived;
 
-class AskCityInteraction extends Interaction
+class AskPizzaType extends Interaction
 {
     /**
      * Run interaction.
      *
-     * @param ReceivedMessage $message
+     * @param MessageReceived $message
      */
-    public function run(ReceivedMessage $message): void
+    public function run(MessageReceived $message): void
     {
-        $this->sendMessage('Where are you?');
+        // Send message, show keyboard or do something else...
     }
 
     /**
      * Process received message.
      *
-     * @param ReceivedMessage $reply
+     * @param MessageReceived $reply
      */
-    public function process(ReceivedMessage $reply): void
+    public function process(MessageReceived $reply): void
     {
-        // Bot can find information only for some cities
-        $city = $reply->getText();
-        $cities = ['London', 'New York', 'Moscow'];
-        if (!in_array($city, $cities, true)) {
-            $this->sendMessage(
-                'Right know, I can find an information about weather only for ' . implode($cities, ', ') . '.'
-            );
+        // Process reply to the message you sent in method "run".
+    }
+}
+```
+
+## Restarting Interactions
+
+You make restart current interaction by calling `restart` method. This method helps you to ask question from user again, if user's reply does not seem to be valid.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Interactions;
+
+use App\Pizza;
+use FondBot\Conversation\Interaction;
+use FondBot\Events\MessageReceived;
+use FondBot\Templates\Keyboard;
+
+class AskPizzaType extends Interaction
+{
+    /**
+     * Run interaction.
+     *
+     * @param MessageReceived $message
+     */
+    public function run(MessageReceived $message): void
+    {
+        $this->reply('Choose pizza', Keyboard::make([
+            Keyboard\ReplyButton::make('Pepperoni'),
+            Keyboard\ReplyButton::make('Margherita'),
+            Keyboard\ReplyButton::make('Cheeseburger'),
+        ]));
+    }
+
+    /**
+     * Process received message.
+     *
+     * @param MessageReceived $reply
+     */
+    public function process(MessageReceived $reply): void
+    {
+        if(Pizza::whereType($reply->getText())->findOrFail()->remaining === 0) {
+            $this->reply('Sorry, '.$reply->getText().' is out of stock.');
 
             $this->restart();
 
             return;
         }
-
-        // Fetch weather data
-        $guzzle = new Client;
-        $response = $guzzle->get('http://samples.openweathermap.org/data/2.5/weather?q=' . $city . '&appid=b1b15e88fa797225412429c1c50c122a1');
-        $response = json_decode($response->getBody()->getContents());
-
-        // Send result to user
-        $this->sendMessage($response->weather->description);
     }
-} 
+}
 ```
-    
-## Handling Interaction    
-When bot jumps to interaction the framework will execute method `run`. 
-In this method you need to send some question or/and keyboard for user in order to receive reply. 
 
-After that, bot will wait for user reply and when the message is received method `process` will be executed.
-Here you can send message to the user again, restart interaction (if something went wrong or user did not respond correctly) or jump to another interaction.
+## Jumping To Another Interactions
 
-If you don't restart current interaction or jump to another interaction current session will be closed and bot will be ready to activate intents again.
+If you wish to ask another question within current session, you may jump to another interaction from `process` method.
 
-    
+```php
+/**
+ * Process received message.
+ *
+ * @param MessageReceived $reply
+ */
+public function process(MessageReceived $reply): void
+{
+    if(Pizza::whereType($reply->getText())->findOrFail()->remaining === 0) {
+        $this->reply('Sorry, '.$reply->getText().' is out of stock.');
+
+        $this->restart();
+
+        return;
+    }
+
+    AskPizzaSize::jump();
+}
+```
