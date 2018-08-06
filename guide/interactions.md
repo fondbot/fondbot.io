@@ -17,7 +17,7 @@ All interactions are stored in `app/Interactions` directory. If `app/Interaction
 Create new interaction by running artisan command:
 
 ```bash
-php artisan fondbot:make:interaction AskCity
+php artisan fondbot:make:interaction AskPizzaType
 ```
 
 ### Class Structure
