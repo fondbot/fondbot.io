@@ -3,7 +3,7 @@ module.exports = {
     serviceWorker: true,
     ga: 'UA-99756081-2',
     head: [
-        ['link', { rel: 'icon', href: '/logo.svg' }]
+        ['link', {rel: 'icon', href: '/logo.svg'}]
     ],
     locales: {
         '/': {
@@ -13,11 +13,25 @@ module.exports = {
         },
     },
     themeConfig: {
-        repo: 'fondbot/fondbot.io',
+        repo: 'fondbot/fondbot',
         editLinks: true,
         lastUpdated: true,
         displayAllHeaders: false,
         sidebarDepth: 1,
+        locales: {
+            '/': {
+                nav: [
+                    {
+                        text: 'Guide',
+                        link: '/guide/',
+                    },
+                    {
+                        text: 'Slack',
+                        link: 'https://slack.fondbot.io'
+                    },
+                ],
+            }
+        },
         sidebar: [
             {
                 title: 'Getting Started',
