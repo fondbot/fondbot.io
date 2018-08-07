@@ -1,8 +1,10 @@
 # Configuration
 
+[[toc]]
+
 As mentioned before, FondBot is powered by the Laravel framework and if you are familiar with this framework you will not have problems in installing and customizing your configuration.
-But if you are a newcomer, go through the [official Laravel documentation](https://laravel.com/docs/5.5/configuration). 
-Also, you might be interested in [Cache](https://laravel.com/docs/5.5/cache), [Queues](https://laravel.com/docs/5.5/queues) and [Database](https://laravel.com/docs/5.5/eloquent) sections.
+But if you are a newcomer, go through the [official Laravel documentation](https://laravel.com/docs/configuration). 
+Also, you might be interested in [Cache](https://laravel.com/docs/cache), [Queues](https://laravel.com/docs/queues) and [Database](https://laravel.com/docs/eloquent) sections.
 
 ## Channels
 

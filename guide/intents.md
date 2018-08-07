@@ -6,16 +6,27 @@
 Intent is a command which is been executed upon activation.
 Upon running you can send messages, attachments and templates.
 
-In order to create dialog and process user replies you need to use [interactions](/interactions).
+In order to create dialog and process user replies you need to use [interactions](/guide/interactions.md).
 
 ## Creating Intents
+
+### Generating Intent Classes
+
+All intents are stored in `app/Intents` directory.
+
 Create new intent by running artisan command:
 
 ```bash
-php artisan fondbot:make:intent WeatherIntent
+php artisan fondbot:make:intent OrderPizza
 ```
 
-This command will create `app/Intents/WeatherIntent.php` file which will contain the following class:
+### Class Structure
+
+Intents consint of two methods: `activators` and `run`.
+
+`activators` should return an array of [activators](#activators). When user sends message FondBot will go through all your intents and find matching activator in order to decide which intent to execute.
+
+When intent is matched, `run` method will be executed with the `MessageReceived` object
 
 ```php
 <?php
@@ -28,7 +39,7 @@ use FondBot\Conversation\Activators\Exact;
 use FondBot\Conversation\Intent;
 use FondBot\Events\MessageReceived;
 
-class WeatherIntent extends Intent
+class OrderPizza extends Intent
 {
     /**
      * Intent activators.
@@ -38,7 +49,7 @@ class WeatherIntent extends Intent
     public function activators(): array
     {
         return [
-            Exact::make('/weather'),
+            Exact::make('order pizza'),
         ];
     }
 
@@ -47,39 +58,23 @@ class WeatherIntent extends Intent
         // Send reply to user, jump to interaction or do something else...
     }
 }
+
 ```
 
-## Handling Intent
-When one of the intent activator matches, `run` method will be executed by framework.
-Here you can do some tasks like fetching data from external API and then sending result to the user.
-Go to the [sending messages](/sending-messages) section to learn more about message templates.
+## Making Conversations
 
-If you want to create dialog with user and process his reply you need to make a transition to an [interaction](/interactions) from your intent:
+Your intent may send a reply to user and stop executing, but mostly you will need to make a dialog with user in order to retrieve some information (for example, ask pizza type and size in order to make an order).
+
+If you want to create dialog with user and process his reply you need to make a transition to an [interaction](/guide/interactions.md) from your intent:
 
 ```php
 public function run(MessageReceived $message): void
 {
-    Interactions\AskCityInteraction::jump();
-}
-```
-
-## Injecting Dependencies
-
-FondBot loves Laravel's approach to the DI, so you can inject any dependencies through intent constructor as you do it in Laravel.
- 
-```php
-class WeatherIntent extends Intent
-{
-    public function __construct(WeatherApi $api) 
-    {
-        $this->api = $api;
-    {   
-    ...
+    \App\Interactions\AskPizzaType::jump();
 }
 ```
 
 ## Activators
-From the above example, if user sends `/weather` then `WeatherIntent` will be activated. 
 
 ### Exact
 
