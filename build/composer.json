@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build-all": [
+      "rm -rf ./build ./repositories",
+      "git clone https://github.com/fondbot/framework.git repositories/framework",
+      "git clone https://github.com/fondbot/drivers-telegram.git repositories/drivers-telegram",
+      "@php sami.phar update framework.php",
+      "@php sami.phar update drivers-telegram.php",
+      "rm -rf ./repositories",
+      "mkdir -p ../public/api",
+      "cp -r ./build/ ../public/api"
+    ]
+  }
+}
