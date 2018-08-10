@@ -40,7 +40,7 @@ $this->sendAttachment($attachment);
 ## Delay Sending
 
 ::: warning
-In order to use delayed message sending, setup [queues](https://laravel.com/docs/5.6/queues).
+In order to use delayed message sending, setup [queues](https://laravel.com/docs/queues).
 :::
 
 Both `reply` and `sendAttachment` methods can be delayed:
