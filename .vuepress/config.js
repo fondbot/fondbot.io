@@ -13,6 +13,7 @@ module.exports = {
     },
     themeConfig: {
         repo: 'fondbot/fondbot',
+        docsRepo: 'fondbot/fondbot.io',
         editLinks: true,
         lastUpdated: true,
         displayAllHeaders: false,
@@ -55,6 +56,7 @@ module.exports = {
                 title: 'Drivers',
                 collapsable: false,
                 children: [
+                    '/guide/drivers/',
                     '/guide/drivers/telegram',
                     '/guide/drivers/vk',
                 ],

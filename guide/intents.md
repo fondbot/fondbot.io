@@ -74,7 +74,7 @@ public function run(MessageReceived $message): void
 }
 ```
 
-## Activators
+## Available Activators
 
 ### Exact
 
@@ -104,7 +104,7 @@ Received message text is matched by a regular expression using [str_is](https://
 ```php
 use FondBot\Conversation\Activators\Regex;
 
-Regex::make(['weather in', 'is it raining in'])
+Regex::make(['weather in *', 'is it raining in *'])
 ```
 
 ### In
@@ -142,4 +142,61 @@ Received message payload data must match the given value.
 use FondBot\Conversation\Activators\Payload;
 
 Payload::make('foo');
+```
+
+## Custom Activators
+
+### Using Activator Objects
+
+If you wish specific activators across your application, you can make your own activator. To generate a new activator object, use `fondbot:make:activator` artisan command:
+
+```bash
+php artisan fondbot:make:activator OnlyAdmin
+```
+
+The new activator will be placed in the `app/Activators` directory. Return `true` or `false` in `matches` method depending on whether incoming message is valid for activating intent or not:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Activators;
+
+use FondBot\Contracts\Conversation\Activator;
+use FondBot\Events\MessageReceived;
+
+class OnlyAdmin implements Activator
+{
+    private $adminUsernames = [
+        'vladimir',
+    ];
+
+    /**
+     * Result of matching activator.
+     *
+     * @param MessageReceived $message
+     *
+     * @return bool
+     */
+    public function matches(MessageReceived $message): bool
+    {
+        return in_array($message->getFrom()->getUsername(), $this->adminUsernames, true);
+    }
+}
+```
+
+### Using Closures
+
+If you need custom activators once in some intent, you may use a Closure based activator. The Closure receives `MessageReceived` object and should return `true` or `false` depending on whether intent should be matched by the provided message.
+
+```php
+public function activators(): array
+{
+    return [
+        function (MessageReceived $message) {
+            return $message->getText() === 'foo';
+        },
+    ];
+}
 ```
