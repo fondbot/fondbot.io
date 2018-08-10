@@ -1,5 +1,7 @@
 # Templates
 
+[[toc]]
+
 ## Introduction
 Template is an UI element which bot can send to a user.
 Some templates are generic and work across all platforms, but some of them are platform-specific.
@@ -16,14 +18,38 @@ Keyboard is the main reason people love chatbots. So, use them wisely and your b
 Here is an example of creating keyboard and sending it to user:
 
 ```php
-$keyboard = (new Keyboard)
-    ->addButton(
-        (new Keyboard\ReplyButton)->setLabel('Yes, please.')
-    )
-    ->addButton(
-        (new Keyboard\ReplyButton)->setLabel('No.')
-    );
+$keyboard = Keyboard::make([
+    Keyboard\ReplyButton::make('Yes, please.'),
+    Keyboard\ReplyButton::make('No.'),
+]);
 
 $this->reply('Should I send you a weather forecast every day?')->template($keyboard);
 ```
 
+## Available Keyboard Buttons
+
+Here is a list of all available generic keyboard buttons, which are included in FondBot framework and every driver should support them. Also, note that every driver may support it's own platform-specific buttons. Please, refer desired driver's documentation in order to find out all of them.
+
+### Reply Button
+
+```php
+use FondBot\Templates\Keyboard\ReplyButton;
+
+ReplyButton::make('foo');
+```
+
+### Payload Button
+
+```php
+use FondBot\Templates\Keyboard\PayloadButton;
+
+PayloadButton::make('foo', 'some_data');
+```
+
+### URL Button
+
+```php
+use FondBot\Templates\Keyboard\UrlButton;
+
+UrlButton::make('Open link', 'https://fondbot.io');
+```
