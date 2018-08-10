@@ -1,5 +1,9 @@
 # Telegram
 
+::: warning
+Telegram driver documentation is still under development.
+:::
+
 [[toc]]
 
 In order to create Telegram channel you need to create bot and obtain access token.

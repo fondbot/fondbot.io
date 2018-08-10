@@ -12,6 +12,8 @@ php artisan fondbot:driver:list
 
 ## Installing Drivers
 
+FondBot drivers are supplied as a [Composer](https://getcomposer.org) packages. 
+
 ### Using Artisan Command
 
 ```bash
