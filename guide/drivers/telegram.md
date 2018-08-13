@@ -1,61 +1,61 @@
 # Telegram
 
+[[toc]]
+
 ::: warning
 Telegram driver documentation is still under development.
 :::
 
-[[toc]]
+## Introduction
 
-In order to create Telegram channel you need to create bot and obtain access token.
-
-You can find all related information in the [official guide](https://core.telegram.org/bots#3-how-do-i-create-a-bot). 
+If you do not have a Telegram bot registered already, go through the [official documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot) in order to create one and obtain access token.
 
 ## Installation
 
-In your project root run the following command:
+In order to start using Telegram, you need to install it.
 
-    php artisan fondbot:driver:install telegram
+Install it using artisan command:
 
-### Configuration    
+```bash
+php artisan fondbot:driver:install telegram
+```
+
+or install using Composer:
+
+```bash
+composer require fondbot/drivers-telegram
+```
+
+## Configuration    
 
 Define Telegram channel in `src/Providers/ChannelServiceProvider.php`:
 
-    public function channels(): array
-    {
-        return [
-            'telegram' => [
-                'driver' => 'telegram',
-                'token' => env('TELEGRAM_TOKEN'),
-            ],
-        ];
-    }
+```php
+public function channels(): array
+{
+    return [
+        'telegram' => [
+            'driver' => 'telegram',
+            'token' => env('TELEGRAM_TOKEN'),
+        ],
+    ];
+}
+```
 
-### Registering Webhook
+::: tip
+You may register as many Telegram channels as you need.
+:::
 
-Telegram requires HTTPS for webhook urls. Read more about Telegram Webhook in the [official guide](https://core.telegram.org/bots/webhooks).
+## Registering Webhook
 
-Then, using curl tell Telegram which URL to use for sending updates from bot:
+After defining telegram channel in service provider, you may wish to set webhook URL in order to receive updates from your Telegram bot. 
 
-    curl -F “url=https://<YOURDOMAIN>/<WEBHOOKLOCATION>" https://api.telegram.org/bot<TOKEN-OBTAINED-FROM-TELEGRAM>/setWebhook    
+::: warning Webhook limitations
+Telegram requires only HTTPS for webhooks. We recommend [valet share](https://laravel.com/docs/valet#sharing-sites) for development purposes.
+:::
 
-You can find route URL for your channels by running:
+Using artisan command you can set webhook url. Take note, that this command uses `APP_URL` from your `.env` file.
 
-    php toolbelt channel:list
-
-## Templates
-
-### Request Contact Button
-
-    $keyboard = (new Keyboard)
-        ->addButton(
-            (new RequestContactButton)->setLabel('Send my phone number.')
-        );
-
-    $this->sendMessage('What\'s your phone number? Our support team will call you back.', $keyboard);
-
-### Request Location Button
-
-    $keyboard = (new Keyboard)
-        ->addButton(
-            (new RequestLocationButton)->setLabel('Send my location.')
-    );
+```bash
+php artisan fondbot:driver:telegram:set-webhook
+```
