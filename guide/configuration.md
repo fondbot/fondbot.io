@@ -46,7 +46,7 @@ To get a list of all register channels execute the `channel:list` artisan comman
 php artisan fondbot:channel:list
 ```
 
-### Protecting Channel Webhooks
+## Protecting Channel Webhooks
 
 You are likely want to protect your channel webhook routes from unauthorized access. Just add `webhook-secret` to your driver options with a random string and it will be appended to the URL.
 
@@ -55,7 +55,7 @@ You are likely want to protect your channel webhook routes from unauthorized acc
 
 declare(strict_types=1);
 
-namespace Bot\Providers;
+namespace App\Providers;
 
 use FondBot\Foundation\Providers\ChannelServiceProvider as ServiceProvider;
 
