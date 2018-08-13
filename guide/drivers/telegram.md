@@ -8,6 +8,8 @@ Telegram driver documentation is still under development.
 
 ## Introduction
 
+This driver uses [unreal4u/telegram-api](https://github.com/unreal4u/telegram-api) in order to interact with Telegram Bot API.
+
 If you do not have a Telegram bot registered already, go through the [official documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot) in order to create one and obtain access token.
 
 ## Installation
