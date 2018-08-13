@@ -14,7 +14,7 @@ footer: MIT Licensed | Copyright © 2017-present Vladimir Yuldashev
 ---
 
 ```php
-class WeatherIntent extends Intent
+class Weather extends Intent
 {
     public function activators(): array
     {
