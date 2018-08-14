@@ -89,7 +89,7 @@ class AskPizzaType extends Interaction
      */
     public function run(MessageReceived $message): void
     {
-        $this->reply('Choose pizza', Keyboard::make([
+        $this->reply('Choose pizza')->template(Keyboard::make([
             Keyboard\ReplyButton::make('Pepperoni'),
             Keyboard\ReplyButton::make('Margherita'),
             Keyboard\ReplyButton::make('Cheeseburger'),
@@ -103,13 +103,25 @@ class AskPizzaType extends Interaction
      */
     public function process(MessageReceived $reply): void
     {
-        if(Pizza::whereType($reply->getText())->findOrFail()->remaining === 0) {
+        $pizza = Pizza::whereType($reply->getText())->find();
+
+        if (!$pizza) {
+            $this->reply('Sorry, we do not have ' . $reply->getText() . '.');
+
+            $this->restart();
+
+            return;
+        }
+
+        if($pizza->remaining === 0) {
             $this->reply('Sorry, '.$reply->getText().' is out of stock.');
 
             $this->restart();
 
             return;
         }
+
+        //
     }
 }
 ```
@@ -126,7 +138,7 @@ If you wish to ask another question within current session, you may jump to anot
  */
 public function process(MessageReceived $reply): void
 {
-    if(Pizza::whereType($reply->getText())->findOrFail()->remaining === 0) {
+    if($pizza->remaining === 0) {
         $this->reply('Sorry, '.$reply->getText().' is out of stock.');
 
         $this->restart();
