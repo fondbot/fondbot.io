@@ -40,10 +40,6 @@ protected function channels(): array
 }
 ```
 
-::: tip
-You may register as many Telegram channels as you need.
-:::
-
 ## Registering Webhook
 
 After defining telegram channel in service provider, you may wish to set webhook URL in order to receive updates from your Telegram bot. 
