@@ -12,7 +12,7 @@ If you do not have a VK bot registered already, go through the [official documen
 
 ## Installation
 
-In order to start using Telegram, you need to install it.
+In order to support VK, you need to install driver.
 
 Install it using artisan command:
 
@@ -28,7 +28,7 @@ composer require fondbot/drivers-vk
 
 ## Configuration    
 
-Define Telegram channel in `src/Providers/ChannelServiceProvider.php`:
+Define VK channel in `src/Providers/ChannelServiceProvider.php`:
 
 ```php
 protected function channels(): array

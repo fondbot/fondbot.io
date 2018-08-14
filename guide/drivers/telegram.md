@@ -10,7 +10,7 @@ If you do not have a Telegram bot registered already, go through the [official d
 
 ## Installation
 
-In order to start using Telegram, you need to install it.
+In order to support Telegram, you need to install driver.
 
 Install it using artisan command:
 
