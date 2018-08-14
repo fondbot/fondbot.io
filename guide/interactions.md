@@ -103,7 +103,7 @@ class AskPizzaType extends Interaction
      */
     public function process(MessageReceived $reply): void
     {
-        $pizza = Pizza::whereType($reply->getText())->find();
+        $pizza = Pizza::whereType($reply->getText())->first();
 
         if (!$pizza) {
             $this->reply('Sorry, we do not have ' . $reply->getText() . '.');
