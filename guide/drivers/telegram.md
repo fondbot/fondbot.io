@@ -2,10 +2,6 @@
 
 [[toc]]
 
-::: warning
-Telegram driver documentation is still under development.
-:::
-
 ## Introduction
 
 This driver uses [unreal4u/telegram-api](https://github.com/unreal4u/telegram-api) in order to interact with Telegram Bot API.
