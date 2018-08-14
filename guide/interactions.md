@@ -131,11 +131,6 @@ class AskPizzaType extends Interaction
 If you wish to ask another question within current session, you may jump to another interaction from `process` method.
 
 ```php
-/**
- * Process received message.
- *
- * @param MessageReceived $reply
- */
 public function process(MessageReceived $reply): void
 {
     if($pizza->remaining === 0) {
