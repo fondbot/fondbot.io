@@ -29,7 +29,7 @@ composer require fondbot/drivers-telegram
 Define Telegram channel in `src/Providers/ChannelServiceProvider.php`:
 
 ```php
-public function channels(): array
+protected function channels(): array
 {
     return [
         'telegram' => [
