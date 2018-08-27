@@ -2,10 +2,6 @@
 
 [[toc]]
 
-::: warning
-VK driver documentation is still under development.
-:::
-
 ## Introduction
 
 This driver uses official VK SDK [vkcom/vk-php-sdk](https://github.com/VKCOM/vk-php-sdk) in order to interact with VK API.
