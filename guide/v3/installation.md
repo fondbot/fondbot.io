@@ -17,5 +17,5 @@ Use Composer `create-project` command to bootstrap chatbot project:
 composer create-project --prefer-dist fondbot/fondbot bot
 ```
 
-Congratulations, your new bot project has been just created. Now go through [configuration](/guide/configuration.md) section in order to tune created application.
+Congratulations, your new bot project has been just created. Now go through [configuration](configuration.md) section in order to tune created application.
 

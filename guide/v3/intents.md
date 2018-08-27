@@ -6,7 +6,7 @@
 Intent is a command which is been executed upon activation.
 Upon running you can send messages, attachments and templates.
 
-In order to create dialog and process user replies you need to use [interactions](/guide/interactions.md).
+In order to create dialog and process user replies you need to use [interactions](interactions.md).
 
 ## Creating Intents
 
@@ -65,7 +65,7 @@ class OrderPizza extends Intent
 
 Your intent may send a reply to user and stop executing, but mostly you will need to make a dialog with user in order to retrieve some information (for example, ask pizza type and size in order to make an order).
 
-If you want to create dialog with user and process his reply you need to make a transition to an [interaction](/guide/interactions.md) from your intent:
+If you want to create dialog with user and process his reply you need to make a transition to an [interaction](interactions.md) from your intent:
 
 ```php
 public function run(MessageReceived $message): void

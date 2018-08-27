@@ -6,7 +6,7 @@
 
 Interactions are used for situations when you need to ask user some questions and process replies.
 
-Within your [intent](/guide/intents.md), use `jump` method on interaction class to start dialog with user.
+Within your [intent](intents.md), use `jump` method on interaction class to start dialog with user.
 
 ## Creating Interactions
 

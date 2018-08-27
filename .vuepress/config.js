@@ -23,7 +23,7 @@ module.exports = {
                 nav: [
                     {
                         text: 'Guide',
-                        link: '/guide/',
+                        link: '/guide/v3/',
                     },
                     {
                         text: 'Slack',
@@ -32,35 +32,8 @@ module.exports = {
                 ],
             }
         },
-        sidebar: [
-            {
-                title: 'Getting Started',
-                collapsable: false,
-                children: [
-                    '/guide/',
-                    '/guide/installation',
-                    '/guide/configuration',
-                ],
-            },
-            {
-                title: 'Core Concepts',
-                collapsable: false,
-                children: [
-                    '/guide/intents',
-                    '/guide/interactions',
-                    '/guide/sending-messages',
-                    '/guide/templates',
-                ],
-            },
-            {
-                title: 'Drivers',
-                collapsable: false,
-                children: [
-                    '/guide/drivers/',
-                    '/guide/drivers/telegram',
-                    '/guide/drivers/vk',
-                ],
-            },
-        ],
+        sidebar: {
+            '/guide/v3/': require('./v3'),
+        },
     },
 };
