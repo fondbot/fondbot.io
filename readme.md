@@ -2,7 +2,7 @@
 home: true
 heroImage: /logo.svg
 actionText: Get Started →
-actionLink: /guide/v3
+actionLink: /guide/v3/
 features:
 - title: Advanced Dialog System
   details: Build complex dialogs with an ease
